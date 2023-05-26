@@ -24,21 +24,10 @@ import java.util.*
  * `<offset>` is the amount of milliseconds since the start of the song and `<life>` is a
  * number between 0 and 1 representing the amount of life left.
  * @property timeStamp When was the replay scored.
- * @property replayData
- * Decompressed replay data.
- *
- * Only available on standalone `.osr` replays, and if the `compression` feature is enabled
- * (enabled by default).
- *
- * When writing `.osr` files (and `.osr` files only), if the `compression` feature is enabled
- * and this field is `Some`, these actions will be compressed and written. Otherwise,
- * `raw_replay_data` will be written instead.
- *
- * @property rawReplayData
- * Raw replay data, available on `.osr` files even if the `compression` feature is not enabled.
- *
- * When writing, this field is used as a fallback if `replay_data` is `None` or the
- * `compression` feature is disabled.
+// * @property replayData
+// * Decompressed replay data.
+// * @property rawReplayData
+// * Raw replay data
  * @property onlineScoreId
  * Online score id.
  * Only has a useful value on replays embedded in a `ScoreList`.
@@ -49,7 +38,7 @@ data class Replay(
     val version: Int,
     val beatmapHash: String?,
     val playerName: String?,
-    val replayHash: String,
+    val replayHash: String?,
     val count300: Short,
     val count100: Short,
     val count50: Short,
@@ -62,8 +51,8 @@ data class Replay(
     val mods: Int,
     val lifeGraph: String?,
     val timeStamp: Date,
-    val replayData: List<Action>,
-    val rawReplayData: List<Byte>,
+//    val replayData: List<Action>,
+//    val rawReplayData: List<Byte>,
     val onlineScoreId: Long
 )
 

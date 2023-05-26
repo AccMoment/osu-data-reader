@@ -1,9 +1,5 @@
 package osu
 
-import osu.model.Beatmap
-import osu.model.OsuCollection
-import osu.model.OsuMainData
-import osu.model.TimingPoint
 import java.io.BufferedInputStream
 
 
@@ -74,50 +70,6 @@ internal fun BufferedInputStream.readFloat(): Float {
 }
 
 
-internal fun BufferedInputStream.readStarRatings(): List<Double> {
-    val count = readInt()
-    val list = mutableListOf<Double>()
-    repeat(count) {
-        readUByte()
-        val modSet = readInt()
-        readUByte()
-        val starRating = readDouble()
-        list.add(starRating)
-    }
-    return list
-}
-
-internal fun BufferedInputStream.readTimingPoints(): List<TimingPoint> {
-    val count = readInt()
-    val list = mutableListOf<TimingPoint>()
-    repeat(count) {
-        val bpm = readDouble()
-        val offset = readDouble()
-        val inherit = readBoolean()
-        val timingPoint = TimingPoint(bpm, offset, inherit)
-        list.add(timingPoint)
-    }
-    return list
-}
-
-internal fun BufferedInputStream.readCollections(osuData:OsuMainData):List<OsuCollection>{
-    val collectionCount = readInt()
-    val collections = mutableListOf<OsuCollection>()
-    repeat(collectionCount) {
-        val name = readString()
-        val size = readInt()
-        val beatmaps = mutableListOf<Beatmap>()
-        repeat(size) {
-            val hash = readString()
-            osuData.beatmaps.find { beatmap -> beatmap.hash == hash }?.let { beatmap ->
-                beatmaps.add(beatmap)
-            }
-        }
-        val collection = OsuCollection(name = name, beatmaps = beatmaps)
-        collections.add(collection)
-    }
-    return collections
-}
 
 fun ByteArray.toLong(): Long {
     var result = 0L

@@ -5,6 +5,28 @@ import osu.enums.Mode
 import osu.enums.RankedStatus
 import java.util.Date
 
+/**
+ * @property artistAscii The name of the artist without special characters.
+ * @property artistUnicode The unrestrained artist name.
+ * @property titleAscii The song title without special characters.
+ * @property titleUnicode The unrestrained song title.
+ * @property creator The name of the beatmap mapper.
+ * @property difficultyName The name of this specific difficulty.
+ * @property audio The filename of the song file.
+ * @property hash The MD5 hash of the beatmap.
+ * @property fileName The filename of the `.osu` file corresponding to this specific difficulty.
+ * @property drainTime Drain time in seconds.
+ * @property totalTime Total beatmap time in milliseconds.
+ * @property previewTime
+ * When should the song start playing when previewed, in milliseconds since the start of the song.
+ * @property songSource Where did the song come from, if anywhere.
+ * @property tags Song tags, separated by whitespace.
+ * @property lastPlayed Whether the beatmap has been played, and if it has, when was it last played.
+ * @property isOsz2 Whether the beatmap was in `osz2` format.
+ * @property folderName The folder name of the beatmapset within the "Songs" folder.
+ * @property mysteriousLastModified
+ * Perhaps an early attempt at "last modified", but scrapped once peppy noticed it only had 32 bits.
+ */
 
 data class Beatmap(
     val artistAscii :String?,

@@ -7,7 +7,7 @@ data class ScoreList(
 )
 
 /**
- * @property beatmap
+ * @property beatmapHash
  * The beatmap hash.
  *
  * Should be redundant with the individual replay hashes.
@@ -15,6 +15,6 @@ data class ScoreList(
  * All the scored replays for this beatmap.
  */
 data class BeatmapScores(
-    val beatmap: Beatmap,
+    val beatmapHash: String?,
     val scores:List<Replay>
 )

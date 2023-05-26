@@ -23,7 +23,7 @@ import java.util.*
  * @property userPermissions
  * User permissions (0 = None, 1 = Normal, 2 = Moderator, 4 = Supporter,8 = Friend, 16 = peppy, 32 = World Cup staff)
  */
-data class OsuMainData(
+data class OsuData(
     val version: Int,
     val folderCount: Int,
     val unbanDate: Date,

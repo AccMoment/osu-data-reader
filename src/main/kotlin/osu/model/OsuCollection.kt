@@ -7,5 +7,5 @@ data class OsuCollectionList(
 
 data class OsuCollection(
     val name:String?,
-    val beatmaps:List<Beatmap>
+    val beatmapHashes:List<String>
 )
