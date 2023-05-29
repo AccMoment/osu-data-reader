@@ -2,8 +2,8 @@ package osu.model
 
 
 data class ScoreList(
-    val version:Int,
-    val beatmaps:List<BeatmapScores>
+    val version: Int,
+    val beatmaps: List<BeatmapScores>
 )
 
 /**
@@ -16,5 +16,5 @@ data class ScoreList(
  */
 data class BeatmapScores(
     val beatmapHash: String?,
-    val scores:List<Replay>
+    val scores: List<Replay>
 )

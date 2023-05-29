@@ -13,7 +13,7 @@ package osu.model
  * See the osu wiki on the `.osu` format for more details.
  */
 data class TimingPoint(
-    val bpm:Double,
-    val offset:Double,
-    val inherit:Boolean
+    val bpm: Double,
+    val offset: Double,
+    val inherit: Boolean
 )

@@ -7,7 +7,6 @@ import java.io.File
 import java.util.*
 
 
-
 object OsuDataReader {
 
     /**
@@ -49,16 +48,16 @@ object OsuDataReader {
         return OsuCollectionList(version, collections)
     }
 
-    fun getScoresList(filePath: String):ScoreList = getScoresList(file = File(filePath))
+    fun getScoresList(filePath: String): ScoreList = getScoresList(file = File(filePath))
 
     /**
      * get data from scores.db file
      */
-    fun getScoresList(file: File):ScoreList {
+    fun getScoresList(file: File): ScoreList {
         if (file.name != "scores.db") throw Exception("路径错误,请检查scores.db文件的路径是否正确!")
         val stream = BufferedInputStream(file.inputStream())
         val version = stream.readInt()
-        val beatmapScoreList =stream.readBeatmapScoresList()
+        val beatmapScoreList = stream.readBeatmapScoresList()
         return ScoreList(version, beatmapScoreList)
     }
 
@@ -227,52 +226,64 @@ private fun BufferedInputStream.readCollections(): List<OsuCollection> {
     return collections
 }
 
-private fun BufferedInputStream.readBeatmapScoresList():List<BeatmapScores>{
+private fun BufferedInputStream.readBeatmapScoresList(): List<BeatmapScores> {
     val count = readInt()
     val list = mutableListOf<BeatmapScores>()
-    repeat(count){
-        val hash =readString()
-        val replayList= readReplayList()
-        val scores = BeatmapScores(hash,replayList)
+    repeat(count) {
+        val hash = readString()
+        val replayList = readReplayList()
+        val scores = BeatmapScores(hash, replayList)
         list.add(scores)
     }
     return list
 }
 
-private fun BufferedInputStream.readReplayList():List<Replay>{
+private fun BufferedInputStream.readReplayList(): List<Replay> {
     val count = readInt()
     val list = mutableListOf<Replay>()
-    repeat(count){
+    repeat(count) {
         val mode = parseMode(readUByte())
         val version = readInt()
-        val beatmapHash =readString()
+        val beatmapHash = readString()
         val playerName = readString()
         val replayHash = readString()
-        val count300 =readShort()
-        val count100 =readShort()
-        val count50 =readShort()
+        val count300 = readShort()
+        val count100 = readShort()
+        val count50 = readShort()
         val countGeKi = readShort()
-        val countKaTsu =readShort()
-        val countMiss= readShort()
-        val score =readInt()
-        val maxCombo =readShort()
-        val perfectCombo =readBoolean()
-        val mods =readInt()
-        val lifeGraph =readString()
-        val timeStamp =Date(readLong())
+        val countKaTsu = readShort()
+        val countMiss = readShort()
+        val score = readInt()
+        val maxCombo = readShort()
+        val perfectCombo = readBoolean()
+        val mods = readInt()
+        val lifeGraph = readString()
+        val timeStamp = Date(readLong())
         readInt() // don't know what is this
-        val onlineScoreId= readLong()
-        val replay =Replay(
+        val onlineScoreId = readLong()
+        val replay = Replay(
             mode,
             version,
             beatmapHash,
             playerName,
             replayHash,
-            count300, count100, count50, countGeKi, countKaTsu, countMiss, score, maxCombo, perfectCombo, mods, lifeGraph, timeStamp, onlineScoreId
+            count300,
+            count100,
+            count50,
+            countGeKi,
+            countKaTsu,
+            countMiss,
+            score,
+            maxCombo,
+            perfectCombo,
+            mods,
+            lifeGraph,
+            timeStamp,
+            onlineScoreId
         )
 
         list.add(replay)
     }
-return list
+    return list
 
 }

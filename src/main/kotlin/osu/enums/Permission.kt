@@ -10,12 +10,4 @@ enum class Permission(val code: Int) {
     WorldCupStaff(32)
 }
 
-fun parsePermission(byte: Int): Permission = when (byte) {
-    0 -> Permission.None
-    1 -> Permission.Normal
-    2 -> Permission.Moderator
-    4 -> Permission.Supporter
-    8 -> Permission.Friend
-    16 -> Permission.Peppy
-    else -> Permission.WorldCupStaff
-}
+fun parsePermission(byte: Int): Permission = Permission.values().find { it.code==byte }!!
