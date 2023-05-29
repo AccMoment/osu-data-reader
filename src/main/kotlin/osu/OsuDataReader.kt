@@ -34,12 +34,12 @@ object OsuDataReader {
     /**
      * Get data from collection.db file
      */
-    fun getOsuCollectionList(filePath: String): OsuCollectionList = getOsuCollectionList(file = File(filePath))
+    fun getCollectionList(filePath: String): OsuCollectionList = getCollectionList(file = File(filePath))
 
     /**
      * Get data from collection.db file
      */
-    fun getOsuCollectionList(file: File): OsuCollectionList {
+    fun getCollectionList(file: File): OsuCollectionList {
         if (file.name != "collection.db") throw Exception("路径错误,请检查collection.db文件的路径是否正确!")
         val stream = BufferedInputStream(file.inputStream())
         val version = stream.readInt()

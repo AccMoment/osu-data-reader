@@ -17,7 +17,7 @@ internal class MainTest {
 
     @Test
     fun getCollectionTest(){
-        val collection = OsuDataReader.getOsuCollectionList(File("D:\\osu!\\collection.db"))
+        val collection = OsuDataReader.getCollectionList(File("D:\\osu!\\collection.db"))
         assert(collection.collections.isNotEmpty())
     }
 }
