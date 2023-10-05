@@ -1,6 +1,7 @@
 package osu
 
 import java.io.BufferedInputStream
+import java.util.Date
 
 
 internal fun BufferedInputStream.readInt(): Int {
@@ -69,6 +70,12 @@ internal fun BufferedInputStream.readFloat(): Float {
     return bytes.toFloat()
 }
 
+const val TICKS_AT_EPOCH = 621355968000000000L
+const val TICKS_PER_MILLISECOND = 10000
+
+internal fun BufferedInputStream.readDate(): Date{
+    return Date((this.readLong()- TICKS_AT_EPOCH)/ TICKS_PER_MILLISECOND)
+}
 
 fun ByteArray.toLong(): Long {
     var result = 0L
